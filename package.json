@@ -11,7 +11,8 @@
     "test:e2e": "playwright test",
     "worker": "node --import tsx server/worker.mjs",
     "test:smoke": "playwright test --config playwright.smoke.config.ts",
-    "check:publication": "node scripts/check-publication.mjs"
+    "check:publication": "node scripts/check-publication.mjs",
+    "test:nginx": "node scripts/verify-nginx.mjs"
   },
   "dependencies": {
     "@antv/x6": "^3.1.7",

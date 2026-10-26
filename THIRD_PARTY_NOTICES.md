@@ -20,5 +20,6 @@
 | PDF.js / pdf-lib | 测试依赖 | Apache-2.0 / MIT |
 | wawoff2 | 构建字体工具 | MIT，含上游 WOFF2 组件许可，见依赖包 |
 | Docker Compose CLI | 5.6.1，独立校验工具 | Apache-2.0 · https://github.com/docker/compose |
+| Nginx | 1.28 系列；本机代理回归复用 1.28.1 | BSD-2-Clause · https://nginx.org/ ，程序不随源码提交，容器使用独立镜像 |
 
 ELK.js 保持作为独立依赖使用，未修改其源文件。若未来修改或重新分发其覆盖源码，需继续遵守 EPL-2.0 的对应源码要求。容器和便携工具自身的第三方许可也需保留，不能只携带本文件代替原协议。

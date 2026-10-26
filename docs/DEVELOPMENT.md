@@ -53,6 +53,10 @@ npm run test:e2e
 
 ## PDF API
 
+部署代理回归使用真实 Nginx 和隔离的假后台，不创建 PDF 任务。先 `npm run build`，再设置当前进程的 `NGINX_PATH`（已有 Nginx 程序）及按需设置 `OPENSSL_PATH`，运行 `npm run test:nginx`。Linux 默认读取 `/usr/sbin/nginx` 和 PATH 上的 OpenSSL；Windows 可使用现有 Nginx 1.28，或把官方便携版放在 `.tools/nginx-1.28.3/`。测试仅在随机回环端口启动自己的进程，自签证书、私钥、配置和结果均放在忽略的 `.runtime/nginx-verification/`，结束后停止测试进程，不操作现有 Nginx。自签证书只由本次测试客户端信任，不安装到系统证书库。
+
+回归覆盖 HTTP/HTTPS 模板的语法、规范及等价路径共享 POST 限流、限流后 GET 查询/下载、HTML/SPA/静态文件/404/429 安全头、缓存与 HTTPS 跳转。它不代替 Linux 容器和实际域名证书验收。CI 在临时 Ubuntu runner 安装 Nginx/OpenSSL 后运行同一验证。
+
 | 方法与路径 | 结果 |
 |---|---|
 | `POST /api/v1/export-jobs` | 202，返回 `id/state/expiresAt/error` |
