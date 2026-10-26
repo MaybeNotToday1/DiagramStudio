@@ -1,0 +1,9 @@
+services:
+  web:
+    ports: ["443:8443"]
+    volumes:
+      - ./nginx.https.conf.template:/etc/nginx/templates/default.conf.template:ro
+      - ./certs:/etc/nginx/certs:ro
+  api:
+    environment:
+      SECURE_COOKIE: 'true'

@@ -1,0 +1,11 @@
+FROM mcr.microsoft.com/playwright:v1.64.1-noble
+WORKDIR /app
+COPY package*.json .npmrc ./
+RUN npm ci && chown -R pwuser:pwuser /app
+COPY src/modules/er/domain ./src/modules/er/domain
+COPY server/worker.mjs ./server/worker.mjs
+COPY public/fonts ./public/fonts
+USER pwuser
+ENV WORKER_HOST=0.0.0.0
+EXPOSE 3001
+CMD ["node", "--import", "tsx", "server/worker.mjs"]

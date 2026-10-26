@@ -1,0 +1,33 @@
+server:
+  address: ${API_HOST:127.0.0.1}
+  port: ${API_PORT:8080}
+  error:
+    include-message: never
+    include-stacktrace: never
+spring:
+  task:
+    scheduling:
+      pool:
+        size: 2
+  application:
+    name: diagram-api
+  datasource:
+    url: ${DB_URL:jdbc:mysql://127.0.0.1:3307/diagram_studio?connectionTimeZone=UTC&characterEncoding=UTF-8}
+    username: ${DB_USER:diagram_app}
+    password: ${DB_PASSWORD}
+    hikari:
+      maximum-pool-size: 4
+  flyway:
+    enabled: true
+diagram:
+  worker-url: ${WORKER_URL:http://127.0.0.1:3001}
+  worker-key: ${WORKER_KEY}
+  export-directory: ${EXPORT_DIRECTORY:.runtime/exports}
+  secure-cookie: ${SECURE_COOKIE:false}
+  retention-seconds: ${RETENTION_SECONDS:86280}
+  cleanup-ms: ${CLEANUP_MS:60000}
+  processing-enabled: ${PROCESSING_ENABLED:true}
+logging:
+  level:
+    root: WARN
+    studio.diagram: INFO
